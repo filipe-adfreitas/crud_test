@@ -36,11 +36,11 @@ const databaseConfig: DatabaseConfig = {
     pg: {
       client: 'pg',
       connection: {
-        host: Env.get('PG_HOST'),
-        port: Env.get('PG_PORT'),
-        user: Env.get('PG_USER'),
-        password: Env.get('PG_PASSWORD', ''),
-        database: Env.get('PG_DB_NAME'),
+        host: Env.get('PB_HOST', 'localhost'),
+        port: Env.get('PB_PORT', 5432),
+        user: Env.get('PB_USER', 'postgres'),
+        password: Env.get('PG_PASSWORD', '123456'),
+        database: Env.get('PG_DB_NAME','crud_test'),
       },
       migrations: {
         naturalSort: true,

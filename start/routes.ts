@@ -18,13 +18,22 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from '@ioc:Adonis/Core/Route';
 
 Route.group(()=>{
  
   Route.get('/', async () => {
-    return { hello: 'world' }
-  })
+    return { hello: 'Servidor funcionando corretamente' }
+  });
 
+  Route.get('/users/list', 'UsersController.index');
+
+  Route.get('/users/list/:id', 'UsersController.show');
+
+  Route.post("/users/store","UsersController.store");
+
+  Route.put('/users/update/:id', 'UsersController.update');
+
+  Route.delete('/users/delete/:id', 'UsersController.destroy')
 
 }).prefix('/api')
