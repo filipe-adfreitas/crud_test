@@ -37,8 +37,10 @@ Server.middleware.register([
 |
 | and then use it as follows
 |
- | Route.get('dashboard',).middleware('auth')
+| Route.get('dashboard',).middleware('auth')
 |
 */
 Server.middleware.registerNamed({
+  'ValidateUserDatum': () => import('../app/Middleware/ValidadeUserDatum'),
 })
+
