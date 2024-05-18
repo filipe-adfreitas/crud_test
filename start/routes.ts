@@ -30,7 +30,7 @@ Route.group(()=>{
 
   Route.get('/users/list/:id', 'UsersController.show');
 
-  Route.post("/users/store","UsersController.store").middleware('ValidadeUserDatum');
+  Route.post("/users/store","UsersController.store").middleware('ValidateUserDatum');
 
   Route.put('/users/update/:id', 'UsersController.update');
 
