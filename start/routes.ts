@@ -34,6 +34,6 @@ Route.group(()=>{
 
   Route.put('/users/update/:id', 'UsersController.update');
 
-  Route.delete('/users/delete/:id', 'UsersController.destroy')
+  Route.delete('/users/delete/:id', 'UsersController.destroy');
 
 }).prefix('/api')

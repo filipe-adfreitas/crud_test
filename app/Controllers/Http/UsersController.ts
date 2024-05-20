@@ -4,12 +4,12 @@ import User from 'App/Models/User'
 export default class UsersController {
   public async index({}: HttpContextContract) {
     return await User.all() 
-  }
+  } 
 
   public async show({ params, response }: HttpContextContract) {
     const userId = params.id
     try {
-      const user = await User.findOrFail(userId)
+      const user = await User.findOrFail(userId)  
       return user.serialize() 
     } catch (error) {
       return response.status(404).json({ error: 'User not found' })
