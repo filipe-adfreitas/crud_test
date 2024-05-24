@@ -7,16 +7,16 @@ export default class User extends BaseModel {
 
   @column()
   public name: string
-  
+
   @column()
   public email: string
 
   @column()
   public phone: number
 
-  @column.dateTime({ serializeAs: null })
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ serializeAs: null })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 }
