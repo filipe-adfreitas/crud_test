@@ -6,13 +6,11 @@ export default class ExceptionHandler extends HttpExceptionHandler {
   constructor () {
     super(Logger)
   }
-
+  
   public async handle(error: any, ctx: HttpContextContract) {
-
-    //  if (error.code === '') {
-    //    return ctx.response.status(401).send({response: 'Usuario nao autenticado' })
-    //  }
-
+    if (error instanceof Error) {
+      return ctx.response.status(400).json({ error: error.message })
+    }
 
     return super.handle(error, ctx)
   }

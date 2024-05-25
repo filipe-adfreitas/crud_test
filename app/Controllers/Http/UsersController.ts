@@ -12,13 +12,11 @@ export default class UsersController {
   }
 
   public async show({ params, response }: HttpContextContract) {
-    const userId = params.id
-    try {
-      const user = await User.findOrFail(userId)
-      response.status(200).send({response: user})
-    } catch (error) {
-      return response.status(404).json({ error: 'User not found' })
-    }
+    const userId = params.id;
+
+    const user = await User.findOrFail(userId);
+
+    response.status(200).send({ response: user });
   }
 
   public async store({ request, response }: HttpContextContract) {
