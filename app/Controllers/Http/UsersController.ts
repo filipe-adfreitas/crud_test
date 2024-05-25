@@ -1,41 +1,46 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import UserValidator from 'App/Validators/UserValidator'
 
 export default class UsersController {
-  public async index({}: HttpContextContract) {
-    return await User.all() 
-  } 
+  public async index({request, response }: HttpContextContract) {
+    const {page} = request.qs()
+
+    const users = await User.query().paginate(page, 5)
+
+    response.status(200).send({response: users})
+  }
 
   public async show({ params, response }: HttpContextContract) {
-    const userId = params.id
-    try {
-      const user = await User.findOrFail(userId)  
-      return user.serialize() 
-    } catch (error) {
-      return response.status(404).json({ error: 'User not found' })
-    }
+    const userId = params.id;
+
+    const user = await User.findOrFail(userId);
+
+    response.status(200).send({ response: user });
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const data = request.only(['name', 'email', 'phone','password'])
+    await request.validate(UserValidator)
 
-    try {
-      const user = await User.create(data)
-      return response.status(201).json(user.serialize())  
-    } catch (error) {
-      return response.status(400).json({ error: error.message })
-    }
+    const data = request.only(['name', 'email', 'phone'])
+
+    await User.create(data)
+
+    response.status(200).json({
+      response: "Usuario cadastrado com sucesso"
+    })
+
   }
 
   public async update({ params, request, response }: HttpContextContract) {
     const userId = params.id
-    const data = request.only(['name', 'email', 'phone','password'])
+    const data = request.only(['name', 'email', 'phone'])
 
     try {
       const user = await User.findOrFail(userId)
-      user.merge(data) 
+      user.merge(data)
       await user.save()
-      return response.status(200).json(user.serialize()) 
+      return response.status(200).json(user.serialize())
     } catch (error) {
       return response.status(400).json({ error: error.message })
     }
