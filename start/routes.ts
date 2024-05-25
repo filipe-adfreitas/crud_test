@@ -36,4 +36,6 @@ Route.group(()=>{
 
   Route.delete('/users/delete/:id', 'UsersController.destroy');
 
+  Route.post('/users/login', 'AutenticationsController.login');
+
 }).prefix('/api')

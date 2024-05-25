@@ -14,6 +14,9 @@ export default class User extends BaseModel {
   @column()
   public phone: number
 
+  @column()
+  public password: string
+
   @column.dateTime({ serializeAs: null })
   public createdAt: DateTime
 

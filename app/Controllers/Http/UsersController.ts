@@ -17,7 +17,7 @@ export default class UsersController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const data = request.only(['name', 'email', 'phone'])
+    const data = request.only(['name', 'email', 'phone','password'])
 
     try {
       const user = await User.create(data)
@@ -29,7 +29,7 @@ export default class UsersController {
 
   public async update({ params, request, response }: HttpContextContract) {
     const userId = params.id
-    const data = request.only(['name', 'email', 'phone'])
+    const data = request.only(['name', 'email', 'phone','password'])
 
     try {
       const user = await User.findOrFail(userId)
