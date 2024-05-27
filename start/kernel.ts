@@ -41,6 +41,5 @@ Server.middleware.register([
 |
 */
 Server.middleware.registerNamed({
-  'ValidateUserDatum': () => import('../app/Middleware/ValidadeUserDatum'),
 })
 
